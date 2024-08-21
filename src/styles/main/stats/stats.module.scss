@@ -1,0 +1,31 @@
+.stats {
+  border: 0;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  &_income {
+    color: #00b74a;
+    font-size: var(--font18);
+    font-weight: 500;
+  }
+  &_expanse {
+    color: #f63e62;
+    font-size: var(--font18);
+    font-weight: 500;
+  }
+
+  &_history {
+    article {
+      display: flex;
+      background-color: var(--main_bg);
+      padding: 10px 20px;
+      width: 90%;
+      margin: 0 auto;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      border-radius: var(--radius10);
+    }
+  }
+}

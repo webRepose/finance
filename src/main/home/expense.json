@@ -1,0 +1,98 @@
+[
+  {
+    "title": "alcohol",
+    "icon": "../img/category/alcogol.png"
+  },
+  {
+    "title": "children",
+    "icon": "../img/category/baby.png"
+  },
+  {
+    "title": "transport",
+    "icon": "../img/category/ts.svg"
+  },
+  {
+    "title": "car",
+    "icon": "../img/category/car.svg"
+  },
+  {
+    "title": "debts",
+    "icon": "../img/category/bills.png"
+  },
+  {
+    "title": "clothing",
+    "icon": "../img/category/clothes.svg"
+  },
+  {
+    "title": "food",
+    "icon": "../img/category/food.png"
+  },
+  {
+    "title": "electronics",
+    "icon": "../img/category/electro.svg"
+  },
+  {
+    "title": "gift",
+    "icon": "../img/category/gift.png"
+  },
+  {
+    "title": "home",
+    "icon": "../img/category/home.png"
+  },
+  {
+    "title": "phone",
+    "icon": "../img/category/phone.png"
+  },
+  {
+    "title": "sport",
+    "icon": "../img/category/sport.svg"
+  },
+  {
+    "title": "cigarettes",
+    "icon": "../img/category/sigar.svg"
+  },
+  {
+    "title": "entertainment",
+    "icon": "../img/category/game.svg"
+  },
+  {
+    "title": "education",
+    "icon": "../img/category/study.svg"
+  },
+  {
+    "title": "travel",
+    "icon": "../img/category/travel.svg"
+  },
+  {
+    "title": "taxes",
+    "icon": "../img/category/tax.svg"
+  },
+  {
+    "title": "socialLife",
+    "icon": "../img/category/social.png"
+  },
+  {
+    "title": "sweets",
+    "icon": "../img/category/snack.png"
+  },
+  {
+    "title": "shopping",
+    "icon": "../img/category/shop.png"
+  },
+  {
+    "title": "pet",
+    "icon": "../img/category/pet.svg"
+  },
+  {
+    "title": "health",
+    "icon": "../img/category/health.svg"
+  },
+  {
+    "title": "office",
+    "icon": "../img/category/office.svg"
+  },
+  {
+    "title": "otherIncome",
+    "icon": "../img/category/other.svg"
+  }
+]

@@ -1,0 +1,92 @@
+.home {
+  padding: 0 20px 20px 20px;
+
+  &_date {
+    font-size: var(--font18);
+    i {
+      margin-right: 7px;
+    }
+  }
+
+  &_content {
+    margin-top: 15px;
+    background-color: var(--main_bg);
+    border-radius: var(--radius15);
+    padding: 20px;
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    i {
+      margin-right: 9px;
+    }
+
+    p {
+      margin-bottom: 6px;
+    }
+
+    &_expense {
+      color: #f63e62;
+      font-size: var(--font18);
+      font-weight: 500;
+    }
+
+    &_income {
+      color: #00b74a;
+      font-size: var(--font18);
+      font-weight: 500;
+    }
+  }
+
+  &_transfers {
+    margin-top: 15px;
+    background-color: var(--main_bg);
+    border-radius: var(--radius15);
+    padding: 10px;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    &_block {
+      padding: 15px;
+      margin-bottom: 20px;
+      background-color: var(--body_bg);
+      border-radius: 14px;
+      &_date {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        p {
+          font-size: 14px;
+        }
+      }
+
+      &_history {
+        &_data {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+
+          img {
+            width: 50px;
+            height: 50px;
+          }
+
+          h4 {
+            margin-left: 10px;
+            font-size: var(--font18);
+          }
+          h5 {
+            font-size: var(--font20);
+            margin-left: auto;
+          }
+        }
+      }
+    }
+  }
+}

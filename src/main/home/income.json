@@ -1,0 +1,26 @@
+[
+  {
+    "title": "salary",
+    "icon": "../img/category/sallary.png"
+  },
+  {
+    "title": "refund",
+    "icon": "../img/category/refund.png"
+  },
+  {
+    "title": "discounts",
+    "icon": "../img/category/sale.png"
+  },
+  {
+    "title": "rewards",
+    "icon": "../img/category/grants.svg"
+  },
+  {
+    "title": "dividends",
+    "icon": "../img/category/divid.png"
+  },
+  {
+    "title": "otherIncome",
+    "icon": "../img/category/other.svg"
+  }
+]
