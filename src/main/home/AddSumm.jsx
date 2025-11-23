@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Style from "../../styles/main/home/addSumm.module.scss";
 import expense from "./expense.json";
 import income from "./income.json";
@@ -11,14 +11,15 @@ import {
   collection,
   query,
   orderBy,
+  updateDoc,
+  doc, getDoc
 } from "firebase/firestore";
 import Preloader from "../../components/Preloaders/Preloader";
 import { useTranslation } from "react-i18next";
 
-const AddSumm = () => {
+const AddSumm = ({tab, setTab, setDId, dId}) => {
   const [t] = useTranslation();
   const [user] = useAuthState(auth);
-  const [toolpar, setToolpar] = useState(false);
   const [active, setActive] = useState(false);
   const [summ, setSumm] = useState(0);
   const [selectCateg, setSelectCateg] = useState({
@@ -34,8 +35,8 @@ const AddSumm = () => {
   );
 
   const createOrder = () => {
-    setToolpar((prev) => (prev = true));
     document.querySelector("html").style.overflow = "hidden";
+    setTab((prev) => (prev = true));
   };
 
   const choiceCateg = (title, category, icon) => {
@@ -50,18 +51,88 @@ const AddSumm = () => {
   };
 
   const createRequest = async () => {
-    await addDoc(collection(db, "users", user.uid, "list"), {
+
+  if (dId === null) {
+  try {
+    const docRef = await addDoc(collection(db, "users", user.uid, "list"), {
       title: selectCateg.title,
       status: selectCateg.status,
       icon: selectCateg.icon,
       summ: selectCateg.status === "expense" ? -summ : "+" + summ,
       createdAt: Timestamp.fromDate(new Date()),
-    }).then(() => {
-      setSumm((prev) => (prev = 0));
-      setToolpar((prev) => (prev = false));
-      setActive((prev) => (prev = false));
     });
+
+    await updateDoc(docRef, {
+      id: docRef.id
+    });
+
+    setSumm(0);
+    setTab(false);
+    setActive(false);
+    setDId(null);
+
+  } catch (error) {
+    console.error("Ошибка при создании документа:", error);
+  }
+} else {
+
+
+ try {
+      const docRef = doc(db, "users", user.uid, "list", dId);
+      await updateDoc(docRef, {
+        title: selectCateg.title,
+        status: selectCateg.status,
+        icon: selectCateg.icon,
+        summ: selectCateg.status === "expense" ? -summ : "+" + summ,
+        updatedAt: Timestamp.fromDate(new Date()),
+      });
+      setSumm(0);
+      setTab(false);
+      setActive(false);
+      setDId(null);
+
+    } catch (error) {
+      console.error("Ошибка при обновлении документа:", error);
+    }
+}
+};
+
+
+useEffect(() => {
+  const loadData = async () => {
+    if (dId !== null) {
+      const docRef = doc(db, "users", user.uid, "list", dId);
+      const snap = await getDoc(docRef);
+
+      if (snap.exists()) {
+        const data = snap.data();
+
+        // заполняем данные
+        setSelectCateg({
+          title: data.title,
+          status: data.status,
+          icon: data.icon,
+        });
+
+        setSumm(
+          typeof data.summ === "number"
+            ? Math.abs(data.summ)
+            : Number(data.summ.replace("+", ""))
+        );
+      }
+    } else {
+      // если dId стал null — очищаем поля
+      setSelectCateg({
+        title: "alcohol",
+        status: "expense",
+        icon: "../img/category/alcogol.png",
+      });
+      setSumm(0);
+    }
   };
+
+  loadData();
+}, [dId, user.uid]);
 
   if (loading) return <Preloader />;
 
@@ -70,7 +141,7 @@ const AddSumm = () => {
       <button onClick={createOrder} className={Style.AddSumm}>
         <i className="fa-solid fa-plus"></i>
       </button>
-      {toolpar && (
+      {tab && (
         <div className={Style.AddSumm_back}>
           <div className={Style.AddSumm_menu}>
             <div className={Style.AddSumm_menu_position}>
@@ -100,8 +171,9 @@ const AddSumm = () => {
             className={Style.AddSumm_close}
             onClick={() => {
               setSumm((prev) => (prev = 0));
-              setToolpar((prev) => (prev = false));
+              setTab((prev) => (prev = false));
               setActive((prev) => (prev = false));
+              setDId((prev) => (prev = null));
               document.querySelector("html").style.overflow = "auto";
             }}
           >

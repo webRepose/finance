@@ -2,12 +2,13 @@ import Section from "../../UI_kit/Section";
 import Style from "../../styles/main/home/home.module.scss";
 import AddSumm from "./AddSumm";
 import { db, auth } from "../..";
-import { collection, query, orderBy, where } from "firebase/firestore";
+import { collection, query, orderBy, where, deleteDoc, doc} from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Preloader from "../../components/Preloaders/Preloader";
 import DateFun from "../../components/DateFun";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const Home = () => {
   const [t] = useTranslation();
@@ -15,6 +16,8 @@ const Home = () => {
   const startOfMonth = new Date(); // Начало текущего месяца
   startOfMonth.setDate(1);
   startOfMonth.setHours(0, 0, 0, 0);
+  const [tab, setTab] = useState(false);
+  const [dId, setDId] = useState(null);
 
   const endOfMonth = new Date(); // Конец текущего месяца
   endOfMonth.setMonth(endOfMonth.getMonth() + 1);
@@ -65,6 +68,18 @@ const Home = () => {
       income += Number(e.summ);
     }
   });
+
+const deleteRequest = async (docId) => {
+    const docRef = doc(db, "users", user.uid, "list", docId);
+    await deleteDoc(docRef);
+};
+
+const changeRequest = (docId) => {
+  setTab(prev => prev = !prev);
+  setDId(prev => prev = docId);
+} 
+
+console.log(dId)
 
   return (
     <main>
@@ -137,6 +152,24 @@ const Home = () => {
                               >
                                 {data.summ}
                               </h5>
+                            <div className={Style.home_block_edit_visible}>
+                                <button onClick={()=>{
+                                  changeRequest(data.id);
+                                }} className={Style.home_edit}>Изменить</button>
+                                <br className={Style.home_block_edit} />
+                              <button onClick={()=>{
+                                deleteRequest(data.id)
+                              }} className={Style.home_delete}>Удалить</button>
+                            </div>
+                            </div>
+                            <div className={Style.home_block_edit_hide}>
+                                <button onClick={()=>{
+                                  changeRequest(data.id);
+                                }} className={Style.home_edit}>Изменить</button>
+                                <br className={Style.home_block_edit} />
+                              <button onClick={()=>{
+                                deleteRequest(data.id)
+                              }} className={Style.home_delete}>Удалить</button>
                             </div>
                           </div>
                         )
@@ -146,7 +179,7 @@ const Home = () => {
           </div>
         </div>
 
-        <AddSumm />
+        <AddSumm tab={tab} setTab={setTab} setDId={setDId} dId={dId}/>
       </Section>
     </main>
   );
