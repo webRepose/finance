@@ -73,5 +73,7 @@
   "discounts": "Жеңілдіктер",
   "rewards": "Мерекелер",
   "dividends": "Дивидендтер",
-  "otherIncome": "Басқа"
+  "otherIncome": "Басқа",
+  "change":"Өзгерту",
+  "delete":"Жою"
 }

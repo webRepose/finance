@@ -155,21 +155,21 @@ console.log(dId)
                             <div className={Style.home_block_edit_visible}>
                                 <button onClick={()=>{
                                   changeRequest(data.id);
-                                }} className={Style.home_edit}>Изменить</button>
+                                }} className={Style.home_edit}>{t("change")}</button>
                                 <br className={Style.home_block_edit} />
                               <button onClick={()=>{
                                 deleteRequest(data.id)
-                              }} className={Style.home_delete}>Удалить</button>
+                              }} className={Style.home_delete}>{t("delete")}</button>
                             </div>
                             </div>
                             <div className={Style.home_block_edit_hide}>
                                 <button onClick={()=>{
                                   changeRequest(data.id);
-                                }} className={Style.home_edit}>Изменить</button>
+                                }} className={Style.home_edit}>{t("change")}</button>
                                 <br className={Style.home_block_edit} />
                               <button onClick={()=>{
                                 deleteRequest(data.id)
-                              }} className={Style.home_delete}>Удалить</button>
+                              }} className={Style.home_delete}>{t("delete")}</button>
                             </div>
                           </div>
                         )

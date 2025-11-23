@@ -72,5 +72,8 @@
   "discounts": "Discounts",
   "rewards": "Rewards",
   "dividends": "Dividends",
-  "otherIncome": "Other"
+  "otherIncome": "Other",
+
+  "change":"Change",
+  "delete":"Delete"
 }
